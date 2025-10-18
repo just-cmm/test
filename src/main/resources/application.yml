@@ -1,0 +1,73 @@
+server:
+  port: 8080
+
+spring:
+  # 主数据源配置 (MySQL)
+  datasource:
+    primary:
+      url: jdbc:mysql://localhost:3306/primary_db?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      username: root
+      password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        maximum-pool-size: 10
+        minimum-idle: 5
+        connection-timeout: 20000
+        idle-timeout: 300000
+        max-lifetime: 1200000
+
+  # 辅助数据源配置 (H2)
+  datasource:
+    secondary:
+      url: jdbc:h2:mem:secondary_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      password: 
+      driver-class-name: org.h2.Driver
+      hikari:
+        maximum-pool-size: 5
+        minimum-idle: 2
+        connection-timeout: 20000
+        idle-timeout: 300000
+        max-lifetime: 1200000
+
+  # JPA配置
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    # 主数据源JPA配置
+    primary:
+      hibernate:
+        ddl-auto: create-drop
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+          format_sql: true
+    # 辅助数据源JPA配置
+    secondary:
+      hibernate:
+        ddl-auto: create-drop
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.H2Dialect
+          format_sql: true
+
+  # H2控制台配置 (用于测试)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# 日志配置
+logging:
+  level:
+    com.example: DEBUG
+    org.springframework.orm.jpa: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
