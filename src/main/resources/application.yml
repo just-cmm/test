@@ -1,0 +1,68 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  application:
+    name: traffic-data-api
+  
+  # 数据源配置（使用H2内存数据库用于演示）
+  datasource:
+    url: jdbc:h2:mem:trafficdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  
+  # JPA配置
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+  
+  # H2控制台配置（开发环境）
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  # Jackson配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+# 日志配置
+logging:
+  level:
+    com.example.maven: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# 自定义配置
+traffic:
+  data:
+    # 数据包ID最大长度
+    package-id-max-length: 32
+    # 数据源ID最大长度
+    source-id-max-length: 16
+    # 单次推送最大数据项数量
+    max-items-per-request: 1000
+    # 数据保留天数
+    retention-days: 30
+    # 是否启用数据签名验证
+    signature-validation-enabled: true

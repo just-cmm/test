@@ -1,0 +1,8 @@
+/workspace/src/main/java/com/example/maven/TrafficDataApiApplication.java
+/workspace/src/main/java/com/example/maven/model/ApiResponse.java
+/workspace/src/main/java/com/example/maven/Hello.java
+/workspace/src/main/java/com/example/maven/exception/GlobalExceptionHandler.java
+/workspace/src/main/java/com/example/maven/model/TrafficDataItem.java
+/workspace/src/main/java/com/example/maven/controller/TrafficDataController.java
+/workspace/src/main/java/com/example/maven/service/TrafficDataService.java
+/workspace/src/main/java/com/example/maven/model/TrafficDataRequest.java
