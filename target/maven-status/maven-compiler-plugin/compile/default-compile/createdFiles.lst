@@ -1,0 +1,8 @@
+com/example/maven/service/TrafficDataService.class
+com/example/maven/model/TrafficDataItem.class
+com/example/maven/Hello.class
+com/example/maven/model/ApiResponse.class
+com/example/maven/model/TrafficDataRequest.class
+com/example/maven/controller/TrafficDataController.class
+com/example/maven/TrafficDataApiApplication.class
+com/example/maven/exception/GlobalExceptionHandler.class
